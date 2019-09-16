@@ -15,6 +15,9 @@ In this case i made polls app.
 * make sure you meet all requirement.
 * then type this ``` python3 manage.py runserver```
 
+i'm not sure how "Replace the (stupid) example question “What’s up?” with 2 poll questions of your own choice. Ask some friends to take your polls." and "Be sure to ignore the database (db.sqlite3), Python compiler output, and IDE project files."
+are working together. 
+
 ---
 
 ###### last update 16 Sep 2019
