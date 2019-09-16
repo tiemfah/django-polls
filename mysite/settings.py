@@ -107,7 +107,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'Asia/Bangkok'
+TIME_ZONE = config('TIME_ZONE')
 
 USE_I18N = True
 
