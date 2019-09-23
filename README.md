@@ -12,7 +12,13 @@ In this case i made polls app.
 * Python add-on modules as in [requirements.txt](requirements.txt)
 
 ## Running
-* create your own ** .env ** file that contain [SECRET_KEY:string, DEBUG:bool, ALLOWED_HOSTS:*, TIMEZONE:*]
+* create your own  **.env**  file that contain 
+``` 
+SECRET_KEY = yourkey
+DEBUG = True/False
+ALLOWED_HOSTS = *
+TIMEZONE = YourContinent/YourCity
+```
 * linux/ Mac OS ``` python3 manage.py migrate``` then ``` python3 manage.py runserver```
 * Window  ``` python manage.py migrate ``` then ``` python manage.py runserver ```
 
