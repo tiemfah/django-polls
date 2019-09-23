@@ -12,6 +12,7 @@ In this case i made polls app.
 * Python add-on modules as in [requirements.txt](requirements.txt)
 
 ## Running
+* create your own ** .env ** file that contain [SECRET_KEY:string, DEBUG:bool, ALLOWED_HOSTS:*, TIMEZONE:*]
 * linux/ Mac OS ``` python3 manage.py runserver```
 * Window  ``` python manage.py runserver ```
 
