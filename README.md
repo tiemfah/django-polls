@@ -12,8 +12,8 @@ In this case i made polls app.
 * Python add-on modules as in [requirements.txt](requirements.txt)
 
 ## Running
-* make sure you meet all requirement.
-* then type this ``` python3 manage.py runserver```
+* linux/ Mac OS ``` python3 manage.py runserver```
+* Window  ``` python manage.py runserver ```
 
 ---
 
