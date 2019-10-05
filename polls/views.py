@@ -15,12 +15,18 @@ class IndexView(generic.ListView):
         return Question.objects.order_by('-pub_date')[:5]
 
 
-class SecView(generic.ListView):
-    template_name = 'polls/test.html'
-    context_object_name = 'latest_question_list'
+# class SecView(generic.ListView):
+#     template_name = 'polls/test.html'
+#     context_object_name = 'latest_question_list'
 
-    def get_queryset(self):
-        return Question.objects.order_by('-pub_date')[:5]
+#     def get_queryset(self):
+#         return Question.objects.order_by('-pub_date')[:5]
+
+
+def sec_view(req):
+    content = Question.objects.order_by('-pub_date')[:5]
+    context = {'latest_question_list': content}
+    return render(req, 'polls/test.html', context)
 
 
 class DetailView(generic.DetailView):
