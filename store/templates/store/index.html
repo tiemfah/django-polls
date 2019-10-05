@@ -1,0 +1,29 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'store/style.css' %}">
+
+<table>
+    <tr>
+        <th>UPC CODE</th>
+        <th>DESCRIPTION</th>
+        <th>QUANTITY</th>
+        <th>PRICE</th>
+    </tr>
+    {% for item in lastest_item %}
+    <tr>
+        <td>
+            <a href="{% url 'store:detail' item.upccode %}">
+                {{item.upccode}}
+            </a>
+        </td>
+        <td>
+            <p>{{ item.description }}</p>
+        </td>
+        <td>
+            <p>{{item.quantity_in_stock}}</p>
+        </td>
+        <td>
+            <p>{{item.price}}</p>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
