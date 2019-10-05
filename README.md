@@ -17,7 +17,7 @@ In this case i made polls app.
 SECRET_KEY = yourkey
 DEBUG = True/False
 ALLOWED_HOSTS = *
-TIMEZONE = YourContinent/YourCity
+TIME_ZONE = YourContinent/YourCity
 ```
 * linux/ Mac OS ``` python3 manage.py migrate``` then ``` python3 manage.py runserver```
 * Window  ``` python manage.py migrate ``` then ``` python manage.py runserver ```
