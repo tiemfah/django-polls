@@ -4,7 +4,6 @@ from django.db import models
 from django.utils import timezone
 
 
-
 class Question(models.Model):
     question_text = models.CharField(max_length=200)
     pub_date = models.DateTimeField('date published')
@@ -16,8 +15,6 @@ class Question(models.Model):
         now = timezone.now()
         return now - datetime.timedelta(days=1) <= self.pub_date <= now
 
-    
-
 
 class Choice(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
@@ -27,10 +24,10 @@ class Choice(models.Model):
     def __str__(self):
         return self.choice_text
 
-    def vote_count(id):
-       """Return total votes for a given poll. id is poll id"""
-       # Hint: get the question from the database 
-       #       Easiest is use Question.objects.get(...) 
-       # question has a choice_set attribute that is a set of choices
-       # for that question.
-       
+    def vote_count(self, id):
+        """Return total votes for a given poll. id is poll id"""
+        # Hint: get the question from the database
+        #       Easiest is use Question.objects.get(...)
+        # question has a choice_set attribute that is a set of choices
+        # for that question.
+        pass

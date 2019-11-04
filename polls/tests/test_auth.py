@@ -18,7 +18,8 @@ def create_question(question_text, days):
     in the past, days > 0 for questions published in the future).
     """
     time = timezone.now() + datetime.timedelta(days=days)
-    question = Question.objects.create(question_text=question_text, pub_date=time)
+    question = Question.objects.create(question_text=question_text,
+                                       pub_date=time)
     return question
 
 
@@ -28,13 +29,17 @@ class AuthTest(TestCase):
     def setUp(self):
         self.q1 = create_question("A First Question", days=-1)
         # question should have some choices, to test voting
-        self.c1 = Choice.objects.create(choice_text="First Choice", question=self.q1)
-        self.c2 = Choice.objects.create(choice_text="Second Choice", question=self.q1)
-        self.c3 = Choice.objects.create(choice_text="Third Choice", question=self.q1)
+        self.c1 = Choice.objects.create(choice_text="First Choice",
+                                        question=self.q1)
+        self.c2 = Choice.objects.create(choice_text="Second Choice",
+                                        question=self.q1)
+        self.c3 = Choice.objects.create(choice_text="Third Choice",
+                                        question=self.q1)
         # a user who can vote
         self.username = "testuser"
         self.userpass = "123$*HCfjdksla"
-        self.user = User.objects.create_user(self.username,password=self.userpass)
+        self.user = User.objects.create_user(
+            self.username, password=self.userpass)
 
     def test_can_view_poll_detail(self):
         """Test that an unauthenticated user can view poll detail"""
@@ -50,7 +55,8 @@ class AuthTest(TestCase):
         """
         login_url = reverse('login')
         response = self.client.post(login_url,
-                    {'username':self.user.username, 'password':self.userpass})
+                                    {'username': self.user.username,
+                                     'password': self.userpass})
         # This is a weak test: if login succeeds he is redirected.
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, reverse('polls:index'))
@@ -70,7 +76,7 @@ class AuthTest(TestCase):
             pass
         vote_url = reverse('polls:vote', args=[self.q1.id])
         choice_id = self.q1.choice_set.first().id
-        response = self.client.post( vote_url, {'choice':choice_id})
+        response = self.client.post(vote_url, {'choice': choice_id})
         self.assertEqual(response.status_code, 302)
         # comparing redirect response to reverse('login') fails
         # because of next=... query param.  Append it.
@@ -78,10 +84,11 @@ class AuthTest(TestCase):
         self.assertRedirects(response, expect_url)
 
         # Now check that he can vote after login
-        response = self.client.post( reverse('login'),
-                    {'username':self.user.username, 'password':self.userpass})
+        response = self.client.post(reverse('login'),
+                                    {'username': self.user.username,
+                                     'password': self.userpass})
         # submit a vote
-        response = self.client.post( vote_url, {'choice':str(choice_id)})
+        response = self.client.post(vote_url, {'choice': str(choice_id)})
         self.assertEqual(response.status_code, 302)
         # This time the redirect should be to poll results
         expect_url = reverse('polls:results', args=[self.q1.id])
@@ -91,7 +98,7 @@ class AuthTest(TestCase):
         for choice in self.q1.choice_set.all():
             print(choice, "votes:", choice.votes)
         # vote again
-        response = self.client.post( vote_url, {'choice':'2'})
+        response = self.client.post(vote_url, {'choice': '2'})
         self.assertEqual(response.status_code, 302)
         print("After second vote")
         for choice in self.q1.choice_set.all():
