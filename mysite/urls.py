@@ -20,5 +20,6 @@ import polls.views as view
 urlpatterns = [path('polls/', include('polls.urls')),
                path('store/', include('store.urls')),
                path('admin/', admin.site.urls),
+               path('accounts/', include('django.contrib.auth.urls')),
                path('', view.IndexView.as_view()),
                ]
