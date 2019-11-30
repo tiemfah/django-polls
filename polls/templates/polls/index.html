@@ -1,18 +1,27 @@
-{% if user.is_authenticated %} Welcome back, {{ user.username }} {% else %}
-<h1>Please</h1>
-<a href="{% url 'login'%}?next={{request.path}}">Login</a>
-{% endif %} {% if latest_question_list %}
-<ul>
-  {% for question in latest_question_list %}
-  <li>
-    <a href="{% url 'polls:detail' question.id %}"
-      >{{ question.question_text }}</a
-    >
-  </li>
-  {% endfor %}
-</ul>
-{% else %}
-<p>No polls are available.</p>
+  
+{% if user.is_authenticated %}
+Welcome back, 
+    {% if user.first_name != '' %}
+        {{user.first_name}}
+    {% else %}    
+        {{user.username.title}}
+    {% endif %}    
+{% else %}    
+<h1>Please</h1> <a href={% url 'login' %} >login </a> to vote for a topic
 {% endif %}
 
-<a href="{% url 'logout'%}?next={{request.path}}">Logout</a>
+{% block content %}
+    <h1>Current Polls</h1>    
+{% if latest_question_list %}
+    <ul>
+    {% for question in latest_question_list %}
+    <li><a id="q{{ question.id }}" href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
+{% if user.is_authenticated %}
+<a href="{% url 'logout' %}">logout</a>
+{% endif %}
+{% endblock %}

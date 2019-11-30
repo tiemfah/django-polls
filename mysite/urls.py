@@ -6,5 +6,5 @@ urlpatterns = [
     path('polls/', include('polls.urls')),
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('',views.IndexView.as_view()),
+    path('', views.IndexView.as_view()),
 ]
