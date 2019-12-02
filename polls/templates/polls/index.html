@@ -1,13 +1,14 @@
   
 {% if user.is_authenticated %}
-Welcome back, 
+<h5>Welcome back,
     {% if user.first_name != '' %}
         {{user.first_name}}
     {% else %}    
         {{user.username.title}}
-    {% endif %}    
+    {% endif %}  
+</h5>  
 {% else %}    
-<h1>Please</h1> <a href={% url 'login' %} >login </a> to vote for a topic
+<h5>Please <a id="login" href={% url 'login' %} >login </a>to vote for a topic</h5>
 {% endif %}
 
 {% block content %}
